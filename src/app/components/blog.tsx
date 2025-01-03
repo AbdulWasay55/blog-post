@@ -143,6 +143,7 @@ const Blog = () => {
     const blogPost = blogItem.find((post) => post.id === Number(id));
     if(blogPost){
       return(
+        <Suspense>
         <div className="flex flex-col items-center justify-center mt-16 gap-4">
           <div className="flex flex-col gap-3 ">
           <Image src={blogPost.content.image} alt={blogPost.content.alt} width={400} height={250} className=" rounded-xl sm:w-[600px] sm:h-[400px] lg:w-[1000px] lg:h-[300px] xl:w-[1100px] xl:h-[500px]"/>
@@ -197,6 +198,7 @@ const Blog = () => {
           </div>
           <button onClick={()=>route.push("/")} className="flex  h-[30px] w-[200px] bg-[#F9F5FF] text-[#C11574] rounded-3xl  items-center justify-center self-center my-10">Back to Home Page </button>
         </div>
+        </Suspense>
       )
     } 
     else {
@@ -212,6 +214,7 @@ const Blog = () => {
 
 
   return (
+    <Suspense>
     <div>
       <h1 className="font-bold flex text-[24px] my-10 ml-4">Recent blog post </h1>
       <div className="  grid sm:grid-cols-2 gap-10 lg:grid-cols-3">
@@ -235,6 +238,7 @@ const Blog = () => {
         )}
       </div>
     </div>
+    </Suspense>
   ) ;
 };
 
