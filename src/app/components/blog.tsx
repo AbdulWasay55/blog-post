@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 import Image from "next/image";
 
 type Comment = {
@@ -163,6 +164,7 @@ const Blog = () => {
                 placeholder="Write a comment..."
                 className="flex-1 px-4 py-2 border rounded-md text-[#C11574]"
               />
+              <Suspense>
               <button
                 onClick={() => {
                   const sanitizedComment = sanitizeInput(newComment);
@@ -178,7 +180,9 @@ const Blog = () => {
               >
                 Add Comment
               </button>
+              </Suspense>
             </div>
+            <Suspense>
             <ul className="space-y-2">
               {isComment.map((comment) => (
                 <li
@@ -189,6 +193,7 @@ const Blog = () => {
                 </li>
               ))}
             </ul>
+            </Suspense>
           </div>
           <button onClick={()=>route.push("/")} className="flex  h-[30px] w-[200px] bg-[#F9F5FF] text-[#C11574] rounded-3xl  items-center justify-center self-center my-10">Back to Home Page </button>
         </div>
@@ -218,8 +223,10 @@ const Blog = () => {
             <p className="text-[#6941C6] font-semibold text-[14px] ">{post.date}</p>
               <h2 className="font-medium">{post.title}</h2>
               <p className=" line-clamp-3 text-[#667085] h-[80px] text-justify w-[350px]">{post.content.text}</p>
+              <Suspense>
               <button  onClick={() => route.push(`/?id=${post.id}`)}
               style={{ cursor: 'pointer' }} className="flex self-start h-[30px] w-[100px] bg-[#F9F5FF] text-[#6941C6] rounded-3xl  items-center justify-center">Open post</button>
+              </Suspense>
              
           </div>
           </div>
